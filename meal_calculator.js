@@ -45,9 +45,8 @@ DinnerParty.prototype.addDiner = function(diner) {
 
 DinnerParty.prototype.calcTip = function(tip) {
 	var preTipTotal = this.subtotal + this.tax;
-	var numDiners = this.diners.length;
 	this.tip =  preTipTotal * tip;
-	this.tipPerDiner = this.tip / numDiners;
+	this.tipPerDiner = this.tip / this.diners.length;
 	this.total = preTipTotal + this.tip;
 
 	for(var d = 0; d < this.diners.length; d += 1) {
@@ -72,7 +71,7 @@ DinnerParty.prototype.calcBill = function(tax,tip) {
 }
 
 DinnerParty.prototype.printBill = function() {
-	var totalBill = this.total.toFixed(2)
+	var totalBill = this.total.toFixed(2);
 	console.log("The total bill comes to $"+totalBill);
 
 	for(var d = 0; d < this.diners.length; d += 1) {
@@ -96,8 +95,14 @@ vanessa.addDish("water",4.00);
 party.addDiner(vanessa);
 
 party.calcBill(2.05,0.18);
-console.log(party);
+//console.log(party);
 
 
 party.printBill();
+
+
+//TODO
+// - handle rounding error
+// - handle percentage format
+// - optimize number of loops
 
